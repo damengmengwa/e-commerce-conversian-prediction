@@ -16,7 +16,7 @@ def main():
 
     print("\n" + "=" * 60)
     print("  E-Commerce Conversion Prediction & Segmentation")
-    print("  Spring 2026 — Team: Jha | Ranaware | Ren")
+    print("  Spring 2026 — Team: Abhishek Jha | Tanmay Ranaware | Yumen Ren")
     print("=" * 60)
 
     events = load_events()

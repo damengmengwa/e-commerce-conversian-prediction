@@ -1,7 +1,7 @@
 from pathlib import Path
 
 ROOT_DIR   = Path(__file__).parent
-DATA_DIR   = ROOT_DIR / "Retailrocket_dataset"
+DATA_DIR   = ROOT_DIR / "src" / "data"
 OUTPUT_DIR = ROOT_DIR / "outputs"
 
 RANDOM_STATE = 42
