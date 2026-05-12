@@ -1,27 +1,40 @@
+"""Configuration module for e-commerce conversion prediction pipeline.
+
+Centralizes all hyperparameters, paths, and model configurations
+used throughout the project for easy adjustment and reproducibility.
+"""
 from pathlib import Path
 
+# ==================== Paths ====================
 ROOT_DIR   = Path(__file__).parent
 DATA_DIR   = ROOT_DIR / "src" / "data"
 OUTPUT_DIR = ROOT_DIR / "outputs"
 
-RANDOM_STATE = 42
+# ==================== Reproducibility ====================
+RANDOM_STATE = 42  # Fixed seed for deterministic results
 
+# ==================== Data Cleaning ====================
 BOT_THRESH          = 200     # max events/user/day before flagging as bot
 SESSION_GAP_SECONDS = 1800    # 30-min inactivity gap defines a new session
 
-PCA_VARIANCE_THRESHOLD = 0.90
+# ==================== Dimensionality Reduction ====================
+PCA_VARIANCE_THRESHOLD = 0.90  # Retain 90% of variance
 
-KMEANS_K_RANGE     = range(2, 9)
-KMEANS_SAMPLE_SIZE = 50_000
-KMEANS_N_INIT      = 10
+# ==================== Clustering ====================
+KMEANS_K_RANGE     = range(2, 9)      # Range of k values to evaluate
+KMEANS_SAMPLE_SIZE = 50_000           # Sample size for k-means (computational efficiency)
+KMEANS_N_INIT      = 10               # Number of initializations
 
-NEG_SAMPLE = 150_000   # negatives to subsample; all positives are kept
-TEST_SIZE  = 0.20
-CV_FOLDS   = 5
+# ==================== Model Training & Evaluation ====================
+NEG_SAMPLE = 150_000   # negative samples to subsample; all positives kept
+TEST_SIZE  = 0.20      # train-test split ratio
+CV_FOLDS   = 5         # cross-validation folds
 
-# Columns that directly encode the target — excluded before modelling
+# Columns that directly encode the target — excluded from feature set
+# (These would cause data leakage if used during training)
 LEAKY_COLS = ["total_trans", "c2p", "trans_rate"]
 
+# ==================== Hyperparameter Tuning ====================
 HP_ITER = 20   # RandomizedSearchCV iterations per model
 
 RF_PARAM_DIST = {
@@ -41,6 +54,7 @@ XGB_PARAM_DIST = {
     "reg_lambda":       [1, 1.5, 2],
 }
 
-THRESHOLD_SWEEP_STEPS = 200
-FBETA_BETA            = 2
-SHAP_SAMPLE_SIZE      = 2000
+# ==================== Model Evaluation ====================
+THRESHOLD_SWEEP_STEPS = 200  # Steps for probability threshold optimization
+FBETA_BETA            = 2    # F-beta score: β=2 emphasizes recall (catch more converters)
+SHAP_SAMPLE_SIZE      = 2000 # Sample size for SHAP feature importance analysis
