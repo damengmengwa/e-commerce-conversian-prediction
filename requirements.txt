@@ -1,9 +1,27 @@
+# Core data science and ML libraries
 pandas>=2.0
 numpy>=1.24
 scikit-learn>=1.4
+
+# Imbalanced dataset handling
 imbalanced-learn>=0.12
+
+# Gradient boosting
 xgboost>=2.0
+
+# Visualization
 matplotlib>=3.7
 seaborn>=0.13
+
+# Statistical analysis
 statsmodels>=0.14
+
+# Model interpretability
 shap>=0.45
+
+# Development dependencies (optional, for local development)
+# pytest>=7.0
+# black>=23.0
+# flake8>=6.0
+# mypy>=1.0
+
